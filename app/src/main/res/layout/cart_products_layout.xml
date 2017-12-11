@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="38dp">
+    <TextView
+        android:layout_width="160dp"
+        android:layout_height="40dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_weight="7"
+        android:gravity="center"
+        android:text="YOUR CART LIST"
+         />
+    <GridView
+        android:id="@+id/listItems_cart"
+        android:layout_marginTop="40dp"
+        android:layout_width="wrap_content"
+        android:layout_height="350dp"
+        android:paddingBottom="20dp"
+        android:numColumns="2"
+        android:divider="@color/list_divider"
+        android:dividerHeight="3dp">
+    </GridView>
+
+    <Button
+        android:id="@+id/cntnueShoppingBtn"
+        android:layout_width="280dp"
+        android:layout_height="40dp"
+
+        android:layout_above="@+id/checkBtn"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_gravity="center"
+        android:layout_marginBottom="14dp"
+        android:layout_marginEnd="42dp"
+        android:layout_marginRight="42dp"
+        android:fontFamily="sans-serif"
+        android:orientation="vertical"
+        android:singleLine="false"
+        android:text="CONTINUE SHOPPING" />
+
+    <Button
+        android:id="@+id/checkBtn"
+        android:layout_width="280dp"
+        android:layout_height="40dp"
+        android:layout_alignLeft="@+id/cntnueShoppingBtn"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/cntnueShoppingBtn"
+        android:layout_gravity="center"
+        android:layout_marginBottom="20dp"
+        android:fontFamily="sans-serif"
+        android:orientation="vertical"
+        android:singleLine="false"
+        android:text="CHECKOUT" />
+</RelativeLayout>

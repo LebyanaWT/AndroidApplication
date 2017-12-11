@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="70dp"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context="mycompany.com.androidapplication.loginActivity"
+   >
+
+
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/full_name"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
+        <EditText
+            android:id="@+id/usernameLogin"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Username"
+            android:inputType="textPersonName" />
+    </android.support.design.widget.TextInputLayout>
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/full_nam"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
+
+        <EditText
+            android:id="@+id/passwordLogin"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Username"
+            android:inputType="textPersonName" />
+    </android.support.design.widget.TextInputLayout>
+
+    <Button
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/btnLogin"
+    android:background="#3b5998"
+    android:text="Sign In"
+    android:textAllCaps="false"
+    android:textColor="#fff" />
+
+
+    <Button
+        android:id="@+id/btnRegister"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#dc4e41"
+        android:layout_marginTop="10dp"
+        android:text="Sign Up"
+        android:textAllCaps="false"
+        android:textColor="#fff" />
+
+    <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:orientation="vertical">-->
+
+        <!--<TextView-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="40dp"-->
+            <!--android:layout_marginTop="45dp"-->
+
+            <!--android:text="WELCOME TO PICK'N PAY"-->
+            <!--android:textAlignment="center"-->
+
+            <!--/>-->
+
+        <!--<TextView-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="20dp"-->
+            <!--android:text="username"-->
+            <!--android:layout_marginLeft="55dp"-->
+            <!--/>-->
+        <!--<EditText-->
+            <!--android:id="@+id/usernameLogin"-->
+            <!--android:layout_width="280dp"-->
+            <!--android:layout_height="40dp"-->
+            <!--android:layout_gravity="center"-->
+            <!--android:layout_marginTop="3dp"-->
+            <!--android:fontFamily="sans-serif"-->
+            <!--android:orientation="vertical"-->
+            <!--android:singleLine="false" />-->
+        <!--<TextView-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="20dp"-->
+            <!--android:text="password"-->
+            <!--android:layout_marginLeft="55dp"-->
+            <!--/>-->
+        <!--<EditText-->
+            <!--android:id="@+id/passwordLogin"-->
+            <!--android:layout_width="280dp"-->
+            <!--android:layout_height="40dp"-->
+            <!--android:layout_gravity="center"-->
+            <!--android:layout_marginTop="3dp"-->
+            <!--android:fontFamily="sans-serif"-->
+            <!--android:orientation="vertical"-->
+            <!--android:singleLine="false"-->
+            <!--android:inputType="textPassword"/>-->
+        <!--<Button-->
+            <!--android:id="@+id/btnLogin"-->
+            <!--android:layout_width="280dp"-->
+            <!--android:layout_height="40dp"-->
+            <!--android:layout_gravity="center"-->
+            <!--android:layout_marginTop="4dp"-->
+            <!--android:fontFamily="sans-serif"-->
+            <!--android:orientation="vertical"-->
+            <!--android:singleLine="false"-->
+            <!--android:text="SIGN IN" />-->
+        <!--<Button-->
+            <!--android:id="@+id/btnRegister"-->
+            <!--android:layout_width="280dp"-->
+            <!--android:layout_height="40dp"-->
+            <!--android:layout_gravity="center"-->
+            <!--android:layout_marginTop="4dp"-->
+            <!--android:fontFamily="sans-serif"-->
+            <!--android:orientation="vertical"-->
+            <!--android:singleLine="false"-->
+            <!--android:text="SIGN UP" />-->
+    <!--</LinearLayout>-->
+</LinearLayout>
