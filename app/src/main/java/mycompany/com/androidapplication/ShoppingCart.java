@@ -9,29 +9,27 @@ import java.util.List;
 public class ShoppingCart<T> {
 
     private List<T> items;
-    private Item item;
+    public Item item;
+
 
     public ShoppingCart() {
     }
-
     public List<T> getAllItems() {
         return items;
     }
-
     public void addItem(T item) {
         items.add(item);
     }
-
     public void removeItem(T item) {
         items.remove(item);
     }
-
     public int getSize() {
         return items.size();
     }
-
     public void setItems(List<T> items) {
         this.items = items;
     }
+
+
 
 }

@@ -4,11 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginTop="70dp"
+
     android:orientation="vertical"
+    android:background="@drawable/wildanimals"
     android:padding="16dp"
-    tools:context="mycompany.com.androidapplication.loginActivity"
-   >
+    tools:context="mycompany.com.androidapplication.loginActivity">
 
 
 
@@ -16,7 +16,7 @@
         android:id="@+id/full_name"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp">
+        android:layout_marginTop="125dp">
         <EditText
             android:id="@+id/usernameLogin"
             android:layout_width="fill_parent"
@@ -36,8 +36,8 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Username"
-            android:inputType="textPersonName" />
+            android:hint="password"
+            android:inputType="textPassword" />
     </android.support.design.widget.TextInputLayout>
 
     <Button

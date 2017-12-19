@@ -37,16 +37,16 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:text="Price:R"/>
-
-
-
         <Button
-            android:id="@+id/add_button_details"
-            android:layout_width="wrap_content"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
+            android:id="@+id/add_button_details"
+            android:background="#3b5998"
             android:layout_marginTop="10dp"
+            android:text="Add To Cart +"
+            android:textAllCaps="false"
+            android:textColor="#fff" />
 
-            android:text="Add item to cart" />
 
     </LinearLayout>
 </ScrollView>

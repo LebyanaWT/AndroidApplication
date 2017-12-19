@@ -32,7 +32,7 @@ import java.util.Map;
  * Created by LebyanaWT on 2017/12/06.
  */
 
-public class CartListFragment extends android.support.v4.app.Fragment  {
+public class CartListFragment extends android.support.v4.app.Fragment   {
 
     private static final String TAG = "EVENT";
     private CartListControllerCallback callback;
@@ -43,9 +43,6 @@ public class CartListFragment extends android.support.v4.app.Fragment  {
     String currentDate = sdf.format(new Date());
     private Order order;
     Item item = new Item();
-
-
-
 
     public interface CartListControllerCallback {
         List<Item> cartItems();
@@ -73,36 +70,29 @@ public class CartListFragment extends android.support.v4.app.Fragment  {
 
     public void volleyOrderRequestService(){
         RequestQueue requestQ = Volley.newRequestQueue(getContext());
-        String serviceUrl = "http://192.168.2.59:8081/placeOrder";
+        String serviceUrl = "http://192.168.2.162:8081/placeOrder";
         double checkInPriceTotal;
         int quantity = 1;
         double  totalAmount;
-
-        /**
-         * Not Working Yet
-         *  double unitCost = item.getUnitCost()
-         * double  totalAmount = unitCost * quantity;
-         * */
-
         /**
          * Working so far with manually inserted Values for Order
          * **/
         totalAmount = 147.85;
         Map<String,Object> orderParams = new HashMap<>();
         orderParams.put("quantity",1);
-        orderParams.put("price", totalAmount);
+        orderParams.put("price",Singleton.getInstance().checkOutAmount);
         orderParams.put("status","suceessfully" );
         orderParams.put("ordered_date", currentDate);
         orderParams.put("custId", 9);
         orderParams.put("paymentId", 8);
-        orderParams.put("prodsInCart", myCart.getAllItems());
+        orderParams.put("prodsInCart",  Singleton.getInstance().myCartItems);
 
         JsonObjectRequest reqRequest = new JsonObjectRequest(Request.Method.POST,serviceUrl, new JSONObject(orderParams)
                 , new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 String msg = "success";
-                Log.d(TAG , "Json" +response.toString());
+//                Log.d(TAG , "Json" +response.toString());
                 try{
                     msg = (String)response.get("msg");
                 } catch (JSONException e){
@@ -124,4 +114,10 @@ public class CartListFragment extends android.support.v4.app.Fragment  {
         requestQ.add(reqRequest);
         Log.d(TAG , "Json" + new JSONObject(orderParams));
     }
+    /***/
+//    public double cartTotalAmount(ShoppingCart mycart){
+//        double totalAmount = mycart.item.getUnitCost();
+//        return totalAmount;
+//
+//    }
 }

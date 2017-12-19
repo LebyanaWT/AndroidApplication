@@ -38,7 +38,7 @@ public class ProductListFragment extends ListFragment {
 
     private ProductListControllerCallback callback;
     private ProductListAdapter listAdapter;
-    private final static String URL = "http://192.168.2.59:8081/products/all";
+    private final static String URL = "http://192.168.2.162:8081/products/all";
     Button btnCart;
 
     public interface ProductListControllerCallback<T> {

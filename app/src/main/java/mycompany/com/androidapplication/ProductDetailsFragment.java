@@ -63,16 +63,18 @@ public class ProductDetailsFragment extends android.support.v4.app.Fragment {
         //iconView.setImageDrawable(item.getImage());
         nameView.setText(item.getName());
         priceView.setText( Constants.CURRENCY  + String.valueOf(item.getUnitCost()));
-
+        double unitCost = item.getUnitCost();
         descriptionView.setText(item.getDescription());
       //  final String pureBase64Encoded = prodImageString.substring(prodImageString.indexOf(",") + 1);
         final String pureBase64Encoded = item.getImage().substring(item.getImage().indexOf(",") + 1);
         decodeImageString(pureBase64Encoded, iconView);
         final Button addButton = (Button) view.findViewById(R.id.add_button_details);
+
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 callback.addToCart(item);
+
                 addButton.setText("Added");
             }
         });

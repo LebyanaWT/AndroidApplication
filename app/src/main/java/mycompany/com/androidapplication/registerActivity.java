@@ -100,7 +100,7 @@ public class registerActivity extends AppCompatActivity {
 
         RequestQueue requestQ = Volley.newRequestQueue(this);
 
-        String serviceUrl = "http://192.168.2.59:8081/register";
+        String serviceUrl = "http://192.168.2.162:8081/register";
         Map<String,String> jsonParams = new HashMap<String,String>();
         jsonParams.put("firstname" ,firstnameReg);
         jsonParams.put("lastname" ,lastnameReg);

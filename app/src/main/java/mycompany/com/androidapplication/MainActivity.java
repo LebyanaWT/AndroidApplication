@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
@@ -45,10 +46,11 @@ public class MainActivity extends AppCompatActivity implements ProductListFragme
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        final   List<Item> items = (List<Item>) getLastCustomNonConfigurationInstance();
+        final List<Item> items = (List<Item>) getLastCustomNonConfigurationInstance();
         myCart = new ShoppingCart();
         if (items != null) {
             myCart.setItems(items);
+//            Singleton.getInstance().myCartItems.setItems(items);
         } else {
             myCart.setItems(new ArrayList<Item>());
         }
@@ -71,7 +73,6 @@ public class MainActivity extends AppCompatActivity implements ProductListFragme
         } else {
             cartListFragment = new CartListFragment();
         }
-
         cartListFragment.setShoppingCart(myCart);
         cartButton = (Button) findViewById(R.id.cart_item_btn);
         cartButton.setOnClickListener(new View.OnClickListener() {
@@ -98,8 +99,12 @@ public class MainActivity extends AppCompatActivity implements ProductListFragme
         myCart.addItem(item);
         cartButton = (Button) findViewById(R.id.cart_item_btn);
         checkOutPrice += item.getUnitCost() ;
+        Singleton.getInstance().checkOutAmount = checkOutPrice;
         //update the cart button text.
-        cartButton.setText("Items: " + " " + myCart.getSize() + " "  + "Total " + "" +  checkOutPrice);
+        cartButton.setText("Items: " + " " + myCart.getSize());
+//        TextView subTotal = (TextView)findViewById(R.id.sub_total);
+//        subTotal.setText((int) checkOutPrice);
+
     }
     @Override
     public Object onRetainCustomNonConfigurationInstance() {
@@ -117,7 +122,6 @@ public class MainActivity extends AppCompatActivity implements ProductListFragme
                     .addToBackStack("clf")
                     .replace(R.id.main_content, cartListFragment, "clf")
                     .commit();
-
         }
 
     }

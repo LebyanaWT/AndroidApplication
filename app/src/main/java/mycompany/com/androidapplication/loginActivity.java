@@ -13,22 +13,27 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
+import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
+import com.android.volley.ServerError;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
 
 public class loginActivity extends AppCompatActivity {
 
-    private String usernamelogin,passwordlogin;
+    private String username,password;
     Button  btnLogin,btnRegister;
     EditText edusername,edPassword;
 
@@ -68,9 +73,9 @@ public class loginActivity extends AppCompatActivity {
                         loginActivity.this.runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                usernamelogin = edusername.getText().toString();
-                                passwordlogin = edPassword.getText().toString();
-                                if(Utility.isNotNull(usernamelogin) && Utility.isNotNull(passwordlogin)){
+                                username = edusername.getText().toString();
+                                password = edPassword.getText().toString();
+                                if(Utility.isNotNull(username) && Utility.isNotNull(password)){
                                     LoginCustomer();
                                     Toast.makeText(getApplicationContext(), "Successfully Logged In", Toast.LENGTH_LONG).show();
                                     Intent fragment = new Intent(loginActivity.this,MainActivity.class);
@@ -98,12 +103,13 @@ public class loginActivity extends AppCompatActivity {
         });
     }
     private void LoginCustomer(){
+        String HttpUrl ="http://192.168.2.162:8081/login/user";
         Map<String,String> jsonParams = new HashMap<String,String>();
-        jsonParams.put("username" ,usernamelogin);
-        jsonParams.put("password" ,passwordlogin);
-        String HttpUrl ="http://192.168.2.59:8081/login";
+        jsonParams.put("username" ,username);
+        jsonParams.put("password" ,password);
+
         Log.d(TAG , "Json" + new JSONObject(jsonParams));
-//        String HttpUrl = "http://192.168.2.15:8081/login/user";
+
         JsonObjectRequest loginRequest = new JsonObjectRequest(Request.Method.POST,HttpUrl, new JSONObject(jsonParams)
                 , new Response.Listener<JSONObject>() {
             @Override
@@ -119,16 +125,35 @@ public class loginActivity extends AppCompatActivity {
         },new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
-                Toast.makeText(loginActivity.this, error.toString(), Toast.LENGTH_LONG).show();
+                NetworkResponse response = error.networkResponse;
+                if (error instanceof ServerError && response != null) {
+                    try {
+                        String res = new String(response.data,
+                                HttpHeaderParser.parseCharset(response.headers, "utf-8"));
+                        // Now you can use any deserializer to make sense of data
+                        JSONObject obj = new JSONObject(res);
+                    } catch (UnsupportedEncodingException e1) {
+                        // Couldn't properly decode data to string
+                        e1.printStackTrace();
+                    } catch (JSONException e2) {
+                        // returned data is not JSONObject?
+                        e2.printStackTrace();
+                    }
+                }
             }
         }){
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("username", usernamelogin);
-                params.put("password", passwordlogin);
+                params.put("username", username);
+                params.put("password", password);
                 return params;
+            }
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String, String> headers = new HashMap<String, String>();
+                headers.put("Content-Type", "application/json; charset=utf-8");
+                return headers;
             }
         };
         RequestQueue requestQ = Volley.newRequestQueue(loginActivity.this);
