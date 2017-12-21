@@ -38,7 +38,7 @@ public class ProductListFragment extends ListFragment {
 
     private ProductListControllerCallback callback;
     private ProductListAdapter listAdapter;
-    private final static String URL = "http://192.168.2.162:8081/products/all";
+    private final static String URL = "http://192.168.2.197:8081/products/all";
     Button btnCart;
 
     public interface ProductListControllerCallback<T> {
@@ -79,7 +79,6 @@ public class ProductListFragment extends ListFragment {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        Log.i("onResponse", response);
                         try {
                             List<Item> temp = createListFromData(response);
                             listAdapter.addAll(temp);

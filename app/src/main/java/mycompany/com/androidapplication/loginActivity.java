@@ -103,7 +103,7 @@ public class loginActivity extends AppCompatActivity {
         });
     }
     private void LoginCustomer(){
-        String HttpUrl ="http://192.168.2.162:8081/login/user";
+        String HttpUrl ="http://192.168.2.197:8081/login/user";
         Map<String,String> jsonParams = new HashMap<String,String>();
         jsonParams.put("username" ,username);
         jsonParams.put("password" ,password);

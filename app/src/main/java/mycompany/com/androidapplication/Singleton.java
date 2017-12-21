@@ -11,7 +11,7 @@ public class Singleton {
 
     public Double checkOutAmount = null ;
     public List<Item> myCart  = null;
-    public ShoppingCart myCartItems = null;
+
     private static Singleton singletonInstance = null ;
 
     private Singleton(){

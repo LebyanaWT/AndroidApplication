@@ -100,6 +100,8 @@ public class MainActivity extends AppCompatActivity implements ProductListFragme
         cartButton = (Button) findViewById(R.id.cart_item_btn);
         checkOutPrice += item.getUnitCost() ;
         Singleton.getInstance().checkOutAmount = checkOutPrice;
+        Singleton.getInstance().myCart = myCart.getAllItems();
+        Log.d(TAG , "Cart Items" + Singleton.getInstance().myCart);
         //update the cart button text.
         cartButton.setText("Items: " + " " + myCart.getSize());
 //        TextView subTotal = (TextView)findViewById(R.id.sub_total);

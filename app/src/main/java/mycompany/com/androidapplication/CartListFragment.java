@@ -47,6 +47,7 @@ public class CartListFragment extends android.support.v4.app.Fragment   {
     public interface CartListControllerCallback {
         List<Item> cartItems();
     }
+
     public void setShoppingCart(ShoppingCart myCart){
         this.myCart = myCart;
     }
@@ -55,9 +56,7 @@ public class CartListFragment extends android.support.v4.app.Fragment   {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.cart_products_layout, container, false);
         GridView cartList = (GridView) view.findViewById(R.id.listItems_cart);
-
         cartList.setAdapter( new ProductListAdapter(getActivity(), R.layout.cart_list_row, myCart.getAllItems()));
-
         final Button checkOutbtn = (Button) view.findViewById(R.id.checkBtn);
         checkOutbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,7 +69,7 @@ public class CartListFragment extends android.support.v4.app.Fragment   {
 
     public void volleyOrderRequestService(){
         RequestQueue requestQ = Volley.newRequestQueue(getContext());
-        String serviceUrl = "http://192.168.2.162:8081/placeOrder";
+        String serviceUrl = "http://192.168.2.197:8081/placeOrder";
         double checkInPriceTotal;
         int quantity = 1;
         double  totalAmount;
@@ -81,11 +80,11 @@ public class CartListFragment extends android.support.v4.app.Fragment   {
         Map<String,Object> orderParams = new HashMap<>();
         orderParams.put("quantity",1);
         orderParams.put("price",Singleton.getInstance().checkOutAmount);
-        orderParams.put("status","suceessfully" );
+        orderParams.put("status","successfully" );
         orderParams.put("ordered_date", currentDate);
         orderParams.put("custId", 9);
         orderParams.put("paymentId", 8);
-        orderParams.put("prodsInCart",  Singleton.getInstance().myCartItems);
+        orderParams.put("prodsInCart",  Singleton.getInstance().myCart);
 
         JsonObjectRequest reqRequest = new JsonObjectRequest(Request.Method.POST,serviceUrl, new JSONObject(orderParams)
                 , new Response.Listener<JSONObject>() {
@@ -112,12 +111,6 @@ public class CartListFragment extends android.support.v4.app.Fragment   {
             }
         });
         requestQ.add(reqRequest);
-        Log.d(TAG , "Json" + new JSONObject(orderParams));
+        Log.d(TAG , "Order Params" + new JSONObject(orderParams));
     }
-    /***/
-//    public double cartTotalAmount(ShoppingCart mycart){
-//        double totalAmount = mycart.item.getUnitCost();
-//        return totalAmount;
-//
-//    }
 }

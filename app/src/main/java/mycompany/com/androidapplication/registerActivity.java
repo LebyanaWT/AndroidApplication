@@ -99,22 +99,19 @@ public class registerActivity extends AppCompatActivity {
     public void volleyCallWebService(String firstnameReg,String lastnameReg,String emailReg,String usernameReg,String passwordReg){
 
         RequestQueue requestQ = Volley.newRequestQueue(this);
-
-        String serviceUrl = "http://192.168.2.162:8081/register";
+        String serviceUrl = "http://192.168.2.197:8081/register";
         Map<String,String> jsonParams = new HashMap<String,String>();
         jsonParams.put("firstname" ,firstnameReg);
         jsonParams.put("lastname" ,lastnameReg);
         jsonParams.put("email" ,emailReg);
         jsonParams.put("username" ,usernameReg);
         jsonParams.put("password" ,passwordReg);
-        Log.d(TAG , "Json" + new JSONObject(jsonParams));
-
         JsonObjectRequest reqRequest = new JsonObjectRequest(Request.Method.POST,serviceUrl, new JSONObject(jsonParams)
                 , new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 String msg = "success";
-                Log.d(TAG , "Json" +response.toString());
+
                 try{
                     msg = (String)response.get("msg");
                 } catch (JSONException e){
@@ -126,7 +123,7 @@ public class registerActivity extends AppCompatActivity {
                     startActivity(intentLogin);
                 }else{
                     Toast.makeText(getApplicationContext(), "Already Registered", Toast.LENGTH_LONG).show();
-                    Log.d(TAG , "Json" + response);
+
                 }
             }
         }, new Response.ErrorListener() {
